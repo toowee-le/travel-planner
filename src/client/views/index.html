@@ -13,16 +13,21 @@
     <body>
 
         <header>
-            <div class="">
+            <div class="logo">
                 Logo
             </div>
-            <div class="">
-                navigation
-            </div>
+            <nav></nav>
         </header>
 
         <main>
-            <section>
+            <section class="travel-form__section">
+                <div class="travel-form__img-slide">
+                    <img src="../assets/img-1.jpg" alt="Slide 1">
+                    <img src="../assets/img-2.jpg" alt="Slide 2">
+                    <img src="../assets/img-3.jpg" alt="Slide 3">
+                    <img src="../assets/img-4.jpg" alt="Slide 4">
+                </div>
+
                 <form class="" onsubmit="return Client.handleSubmit(event)">
                     <input id="name" type="text" name="input" value="" placeholder="Name">
                     <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
