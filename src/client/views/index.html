@@ -2,19 +2,16 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title>Test</title>
-        <link rel="stylesheet" href="/styles/resets.css">
-        <link rel="stylesheet" href="/styles/base.css">
-        <link rel="stylesheet" href="/styles/header.css">
-        <link rel="stylesheet" href="/styles/form.css">
-        <link rel="stylesheet" href="/styles/footer.css">
+        <title>Travel Planner</title>
+        <!-- Font Awesome-->
+        <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
     </head>
 
     <body>
 
         <header>
             <div class="logo">
-                Logo
+                <span class="logo-brand"><i class="las la-globe"></i> Travel</span>Planner
             </div>
             <nav></nav>
         </header>
@@ -61,12 +58,12 @@
                     <input type="submit" name="search" value="Search" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
                 </form>
             </section>
-
-            <section>
-                <strong>Form Results:</strong>
-                <div id="results"></div>
-            </section>
         </main>
+
+        <section>
+            <strong>Form Results:</strong>
+            <div id="results"></div>
+        </section>
 
         <footer>
             <p>This is a footer</p>

@@ -1,5 +1,20 @@
+@import 'config';
+
 header {
     display: flex;
     justify-content: space-between;
-    padding: 10px 40px;
+    padding: 20px 60px;
+    max-width: 90%;
+}
+
+.logo {
+    font-family: $logo-font;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 1px #000;
+
+    &-brand {
+        color: $brand-color;
+    }
 }
