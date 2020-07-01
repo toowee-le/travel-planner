@@ -1,3 +1,59 @@
+@import 'config';
+
+.travel-form__section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1.5em;
+    align-items: center;
+}
+
+form {
+    border: 1px solid $base-color;
+    background: rgba(0,0,0,0.5);
+    border-radius: 3px;
+    padding: 40px;
+    max-width: 500px;
+
+    .row {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    label {
+        display: block;
+        font-size: .9rem;
+    }
+
+    input {
+        padding: 14px 10px;
+        line-height: 16px;
+        margin: 10px 0;
+        width: 90%;
+        background: rgba(0,0,0,0.3);
+        border: rgba(0,0,0,0.3);
+        color: $base-color;
+    }
+
+    input[type=submit] {
+        background: $brand-color;
+        border: 1px solid $brand-color;
+        color: $base-color;
+        font-size: 1.2rem;
+        width: 100%;
+        cursor: pointer;
+
+        &:hover {
+            background: darken($brand-color, 5%);
+        }
+    }
+
+    ::placeholder {
+        color: $base-color;
+    }
+}
+
+/* Background image slide */
+
 .travel-form__img-slide > img {
     width: 100%;
     height: 100vh;
@@ -34,17 +90,4 @@
 
 .travel-form__img-slide img:nth-child(4) {
     animation-delay: 15s;
-}
-
-form {
-    border: 1px solid #545454;
-    border-radius: 3px;
-    padding: 40px;
-}
-
-input {
-    padding: 5px 20px;
-    width: 100%;
-    line-height: 16px;
-    margin: 10px 0;
 }

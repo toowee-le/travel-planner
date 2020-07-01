@@ -34,8 +34,31 @@
                 </h1>
 
                 <form class="" onsubmit="return Client.handleSubmit(event)">
-                    <input id="name" type="text" name="input" value="" placeholder="Name">
-                    <input type="submit" name="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
+                    <h2>Travel Planner</h2>
+                    <p>Where is your next destination?</p>
+                    <div class="row">
+                        <div class="col">
+                            <label name="from">From</label>
+                            <input id="from" type="text" name="from" value="" placeholder="Country or city">
+                        </div>
+                        <div class="col">
+                            <label name="to">To</label>
+                            <input id="to" type="text" name="to" value="" placeholder="Country or city">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <label name="depart">Depart</label>
+                            <input type="date" id="start" name="trip-start"
+                                    value="2020-07-01" min="2020-07-01" max="2021-07-01">
+                        </div>
+                        <div class="col">
+                            <label name="depart">Return</label>
+                            <input type="date" id="start" name="trip-start"
+                                    value="2020-07-01" min="2020-07-01" max="2021-07-01">
+                        </div>
+                    </div>
+                    <input type="submit" name="search" value="Search" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
                 </form>
             </section>
 
