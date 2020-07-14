@@ -28,9 +28,9 @@ form {
     }
 
     input {
-        padding: 14px 10px;
+        padding: 12px 10px;
         line-height: 16px;
-        margin: 10px 0;
+        margin: 10px 25px 10px 0;
         width: 90%;
         background: rgba(0,0,0,0.4);
         border: rgba(0,0,0,0.3);
@@ -49,6 +49,7 @@ form {
 
         &:hover {
             background: darken($brand-color, 5%);
+            border: 1px solid darken($brand-color, 5%);
         }
     }
 
