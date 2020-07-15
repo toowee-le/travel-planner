@@ -12,7 +12,7 @@ export function handleSubmit(event) {
         geonamesAPI(destination)
         .then(data => {
             console.log(data)
-            postRequest('/location', {lat: data.lat, lon: data.lon, country: data.country, city: destination})
+            postRequest('/destination', {lat: data.lat, lon: data.lon, country: data.country, city: destination})
         })
     }
 }
