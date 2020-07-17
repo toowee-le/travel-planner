@@ -1,20 +1,33 @@
-import { geonamesAPI } from './api'
+import { geonamesAPI, weatherbitAPI } from './api'
 
-export function handleSubmit(event) {
+export const handleSubmit = async (event) => {
     event.preventDefault();
+
+    let newTrip = {};
 
     // DOM elements needed
     const form = document.forms['travel-form']['to'].value;
+    if (form !== '') {
 
-    if (form == '') {
-        alert("Please enter a destination");
-        return false;
-    } else {
         const destination = document.getElementById('to').value;
-        geonamesAPI(destination)
-        .then(data => {
-            console.log(data)
-            postRequest('/destination', {lat: data.lat, lon: data.lon, country: data.country, city: destination})
+
+        await geonamesAPI(destination)
+        .then(geoData => {
+            newTrip.city = geoData.geonames[0].name;
+            newTrip.country = geoData.geonames[0].countryName;
+            newTrip.lat = geoData.geonames[0].lat;
+            newTrip.lon = geoData.geonames[0].lng;
+            console.log(geoData)
+        });
+
+        await weatherbitAPI(newTrip.lat, newTrip.lon)
+        .then(weatherData => {
+            newTrip.currentMinTemp = weatherData.data[0].min_temp;
+            newTrip.currentMaxTemp = weatherData.data[0].max_temp;
+            newTrip.currentTemp = weatherData.data[0].temp;
+            newTrip.description = weatherData.data[0].weather.description;
+            newTrip.icon = weatherData.data[0].weather.icon;
+            console.log(weatherData)
         })
     }
 }
@@ -30,8 +43,8 @@ export const postRequest = async (url = '', data = {}) => {
         body: JSON.stringify(data)
     })
     try {
-        const data = await res.json();
-        return data;
+        const getData = await res.json();
+        return getData;
     } catch(err) {
         console.log("Error:", err);
     }
