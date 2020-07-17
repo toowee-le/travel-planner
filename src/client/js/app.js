@@ -41,6 +41,8 @@ export const handleSubmit = async (event) => {
             newTrip.photo = photo.hits[0].webformatURL;
             console.log(newTrip)
         })
+    } else {
+        alert("Please enter a destination");
     }
 }
 
