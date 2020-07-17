@@ -1,4 +1,4 @@
-import { geonamesAPI, weatherbitAPI, pixabayAPI } from './api'
+import { geonamesAPI, weatherbitAPI, pixabayAPI, restCountriesAPI } from './api'
 
 export const handleSubmit = async (event) => {
     event.preventDefault();
@@ -17,7 +17,15 @@ export const handleSubmit = async (event) => {
             newTrip.country = geoData.geonames[0].countryName;
             newTrip.lat = geoData.geonames[0].lat;
             newTrip.lon = geoData.geonames[0].lng;
-        });
+        })
+
+        await restCountriesAPI(newTrip.country)
+        .then(countryInfo => {
+            newTrip.region = countryInfo[0].region;
+            newTrip.subRegion = countryInfo[0].subregion;
+            newTrip.currency = countryInfo[0].currencies[0].code;
+            newTrip.timezone = countryInfo[0].timezones[1];
+        })
 
         await weatherbitAPI(newTrip.lat, newTrip.lon)
         .then(weatherData => {
