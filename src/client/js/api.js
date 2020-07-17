@@ -26,3 +26,16 @@ export const weatherbitAPI = async (lat, lon) => {
         console.log("Error:", error);
     }
 }
+
+// Get an image of city
+export const pixabayAPI = async (city, country) => {
+    const api_key = '12461459-f96eefb4a24ca6fc33004224d';
+    const url = `https://pixabay.com/api/?key=${api_key}&q=${city}+${country}&image_type=photo`;
+    const res = await fetch(proxy+url);
+    try {
+        const data = await res.json();
+        return data;
+    } catch(error) {
+        console.log("Error:", error);
+    }
+}

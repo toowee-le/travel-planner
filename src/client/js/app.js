@@ -1,4 +1,4 @@
-import { geonamesAPI, weatherbitAPI } from './api'
+import { geonamesAPI, weatherbitAPI, pixabayAPI } from './api'
 
 export const handleSubmit = async (event) => {
     event.preventDefault();
@@ -17,7 +17,6 @@ export const handleSubmit = async (event) => {
             newTrip.country = geoData.geonames[0].countryName;
             newTrip.lat = geoData.geonames[0].lat;
             newTrip.lon = geoData.geonames[0].lng;
-            console.log(geoData)
         });
 
         await weatherbitAPI(newTrip.lat, newTrip.lon)
@@ -27,7 +26,12 @@ export const handleSubmit = async (event) => {
             newTrip.currentTemp = weatherData.data[0].temp;
             newTrip.description = weatherData.data[0].weather.description;
             newTrip.icon = weatherData.data[0].weather.icon;
-            console.log(weatherData)
+        })
+
+        await pixabayAPI(newTrip.city, newTrip.country)
+        .then(photo => {
+            newTrip.photo = photo.hits[0].webformatURL;
+            console.log(newTrip)
         })
     }
 }
