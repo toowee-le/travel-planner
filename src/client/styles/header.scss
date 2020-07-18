@@ -1,10 +1,21 @@
 @import 'config';
 
 header {
+    position: fixed;
     display: flex;
     justify-content: space-between;
     padding: 20px 60px;
     max-width: 90%;
+    background: transparent;
+}
+
+header.active {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 60px;
+    max-width: 90%;
+    background: #000;
 }
 
 .logo {
