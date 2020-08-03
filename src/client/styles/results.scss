@@ -1,0 +1,105 @@
+@import 'config';
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__body {
+        display: flex;
+        width: 750px;
+        margin: 0 auto;
+        padding: 2em;
+        border-radius: 10px;
+        border: 1px solid darken($base-color, 30%);
+        background: rgb(13, 166, 152);
+        box-shadow: 10px 10px 18px -6px rgba(0,0,0,0.53);
+    }
+
+    &__destination {
+        width: 45%;
+        padding-right: 2em;
+        margin-right: 2em;
+        border-right: 1px solid darken($base-color, 20%);
+    }
+
+    &__city {
+        font-size: 2.5rem;
+        padding-bottom: 8px;
+    }
+
+    &__info > p,
+    .weather > p {
+        margin-bottom: 5px;
+        font-size: 1rem;
+    }
+
+    &__img {
+        max-width: 100%;
+        display: block;
+        margin-bottom: 1em;
+    }
+
+    span {
+        font-weight: 700;
+    }
+}
+
+.modal__weather {
+    width: 45%;
+
+    h3 {
+        margin: 0;
+        font-family: $header;
+        font-size: 1.8rem;
+    }
+
+    .countdown {
+        margin: 1em 0;
+    }
+    
+    hr {
+        width: 100%;
+        margin: 1em 0;
+        border: 1px solid darken($base-color, 20%);
+    }
+
+    .save-trip,
+    .delete-trip {
+        outline: none;
+        border: 1px solid $button-border;
+        background: $base-color;
+        margin: 8px 3px 0 0;
+        padding: .5em .8em;
+        border-radius: 5px;
+        letter-spacing: 1px;
+        font-size: 1rem;
+        cursor: pointer;
+
+        &:hover {
+            background: darken($base-color, 5%);
+        }
+    }
+
+    .weather {
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+        font-size: 1rem;
+
+        &__date {
+            margin-bottom: 0;
+        }
+
+        &__description {
+            text-transform: uppercase;
+            font-weight: 300;
+        }
+    }
+}
