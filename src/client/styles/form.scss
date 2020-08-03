@@ -4,7 +4,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 2em;
+    //padding: 2em;
 }
 
 .title {
@@ -15,9 +15,9 @@ form {
     border: 1px solid darken($base-color, 30%);
     background: rgba(0,0,0,0.5);
     border-radius: 3px;
-    padding: 40px;
-    width: 750px;
-    max-width: 100%;
+    padding: 2em;
+    width: 700px;
+    max-width: 70%;
     margin: 2em;
 
     .row {
@@ -79,6 +79,5 @@ form {
 @media (max-width: 1100px) {
     .travel-form__section {
         flex-direction: column;
-
     }
 }
