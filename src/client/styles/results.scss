@@ -104,7 +104,6 @@
 }
 
 .modal {
-    visibility: hidden;
     position: fixed;
     top: 0;
     left: 0;
@@ -114,4 +113,12 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s;
+}
+
+.modal.active {
+    visibility: visible;
+    opacity: 1;
 }
