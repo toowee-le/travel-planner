@@ -13,15 +13,14 @@
             <div class="logo">
                 <span class="logo-brand"> Travel</span>Planner
             </div>
-            <nav></nav>
         </header>
 
         <main>
-            <div class="travel-form__img-slide">
+            <div class="travel-form-bg">
                 <img src="../assets/img-1.jpg" alt="Slide 1">
             </div>
 
-            <section class="travel-form__section">
+            <section class="travel-form-section">
                 <h1 class="title">
                     <span class="br-1">Plan Your</span>
                     <span class="br-2">Next Travel</span>
@@ -56,12 +55,14 @@
                 </form>
             </section>
         </main>
+
+
         <section class="trips">
-            <div class="modal__body">
-                <div class="modal__country-info">
-                    <h2 class="modal__city">Naples, Italy</h2>
-                    <img class="modal__img" src="https://pixabay.com/get/52e2d24a4355b10ff3d8992cc62a3378143bdbec4e507440732b7dd5924ec1_640.jpg" alt="">
-                    <div class="modal__info">
+            <div class="trip-content">
+                <div class="trip-selected">
+                    <h2 class="trip-city">Naples, Italy</h2>
+                    <img class="trip-photo" src="../assets/example.png" alt="">
+                    <div class="trip-info">
                         <p>Country: <span class="data">Italy</span></p>
                         <p>Region: <span class="data">Europe</span></p>
                         <p>Sub-region: <span class="data">Southern Europe</span></p>
@@ -70,83 +71,39 @@
                         <p>Timezone: <span class="data">UTC+01:00</span></p>
                     </div>
                 </div>
-                <div class="modal__weather">
-                    <h3>My trip to: <span class="highlight">Naples, Italy</span></h3>
-                    <h3>Departing: <span class="highlight">14/08/2020</span></h3>
-                    <p class="countdown">Naples is <span class="data">10</span> days away and you're returning to <span class="data">London</span> on <span class="data">22/08/2020</span>.</p>
-
-                    <div class="btn__group">
+                
+                <div class="weather-info">
+                    <h3 class="destination">My trip to: <span  class="highlight">Naples, Italy</span></h3>
+                    <h3 class="departing">Departing: <span class="highlight">14/08/2020</span></h3>
+                    <p class="countdown">Naples is <strong>10</strong> days away.</p>
+                    <div class="btn-group">
                         <button class="btn save-trip">Save trip</button>
                         <button class="btn delete-trip">Delete trip</button>
                     </div>
-
                     <hr>
-                    
                     <p>Weather forecast:</p>
-                    <div class="weather">
-                        <div class="weather__current">
-                            <p class="weather__date">Current weather:
-                                <br>02/08/2020</p>
-                            <img class="weather__img" src="../assets/c03d.png" alt="">
-                            <p class="weather__description">Broken Clouds</p>
-                            <p class="weather__temp">Low: 22&#8451; <span class="divider">|</span> High: 25&#8451;</p>
+                    <div class="weather-forecast">
+                        <div class="weather-current">
+                            <p class="weather-date">Current weather:<br>02/08/2020</p>
+                            <img class="weather-icon" src="../assets/c03d.png" alt="">
+                            <p class="weather-description">Broken Clouds</p>
+                            <p class="weather-temp">Low: 22&#8451; <span class="divider">|</span> High: 25&#8451;</p>
                         </div>
-                        <div class="weather__future">
-                            <p class="weather__date">Future forecast:
-                                <br>14/08/2020</p>
-                            <img class="weather__img" src="../assets/c03d.png" alt="">
-                            <p class="weather__description">Broken Clouds</p>
-                            <p class="weather__temp">Low: 22&#8451; <span class="divider">|</span> High: 25&#8451;</p>
+                        <div class="weather-future">
+                            <p class="weather-date">Future forecast:<br>14/08/2020</p>
+                            <img class="weather-icon" src="../assets/c03d.png" alt="">
+                            <p class="weather-description">Broken Clouds</p>
+                            <p class="weather-temp">Low: 22&#8451; <span class="divider">|</span> High: 25&#8451;</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- <section class="trips__section">
-            <div class="modal">
-                <div class="modal__body">
-                    <div class="modal__destination">
-                        <h2 class="modal__city">Naples, Italy</h2>
-                        <img class="modal__img" src="https://pixabay.com/get/52e2d24a4355b10ff3d8992cc62a3378143bdbec4e507440732b7dd5924ec1_640.jpg" alt="">
-                        <div class="modal__info">
-                            <p>Country: <span>Italy</span></p>
-                            <p>Region: <span>Europe</span></p>
-                            <p>Sub-region: <span>Southern Europe</span></p>
-                            <p>Languages: <span>Italian</span></p>
-                            <p>Currency: <span>EUR</span></p>
-                            <p>Timezone: <span>UTC+01:00</span></p>
-                        </div>
-                    </div>
-                    <div class="modal__weather">
-                        <h3>My trip to: Naples, Italy</h3>
-                        <h3>Departing: 14/08/2020</h3>
-                        <p class="countdown">Naples is <span>10</span> days away</p>
-
-                        <div class="save">
-                            <button class="save-trip">Save trip</button>
-                            <button class="delete-trip">Delete trip</button>
-                        </div>
-                        <hr>
-                        <p>Weather forecast:</p>
-                        <div class="weather">
-                            <div class="weather__currrent">
-                                <p class="weather__date">02/08/2020</p>
-                                <img class="weather__img" src="../assets/c03d.png" alt="">
-                                <p class="weather__description">Broken Clouds</p>
-                                <p class="weather__temp">Low: 22&#8451; | High: 25&#8451;</p>
-                            </div>
-                            <div class="weather__future">
-                                <p class="weather__date">14/08/2020</p>
-                                <img class="weather__img" src="../assets/c03d.png" alt="">
-                                <p class="weather__description">Broken Clouds</p>
-                                <p class="weather__temp">Low: 22&#8451; | High: 25&#8451;</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section> -->
+        
+        
+        <section>
+            <div class="modal"></div>
+        </section>
 
         <footer>
             <p>&copy; 2020 Travel Planner created and designed by <a href="https://github.com/toowee-le" target="_blank">Tuyet Le</a></p>

@@ -1,6 +1,6 @@
 @import 'config';
 
-.travel-form__section {
+.travel-form-section {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -62,7 +62,7 @@ form {
 
 /* Background */
 
-.travel-form__img-slide > img {
+.travel-form-bg > img {
     width: 100%;
     height: 100%;
     object-fit: cover;
