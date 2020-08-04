@@ -75,6 +75,10 @@
                 background: darken($base-color, 5%);
             }
         }
+
+        .delete-trip {
+            background: #ccc;
+        }
             
         .weather-forecast {
             display: flex;
