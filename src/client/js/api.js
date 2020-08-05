@@ -1,3 +1,7 @@
+/**
+ * @description - Functions to get API data from Geonames, Rest Countries, Weatherbit and Pixabay 
+ */
+
 // To avoid the CORS issue, run APIs through a proxy
 const proxy = 'https://cors-anywhere.herokuapp.com/';
 
