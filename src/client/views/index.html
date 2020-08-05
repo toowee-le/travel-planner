@@ -42,13 +42,11 @@
                     <div class="row">
                         <div class="col">
                             <label name="depart">Depart</label>
-                            <input type="date" id="start" name="trip-start"
-                                    value="2020-07-01" min="2020-07-01" max="2021-07-01">
+                            <input type="date" id="departDate" name="departDate">
                         </div>
                         <div class="col">
-                            <label name="depart">Return</label>
-                            <input type="date" id="start" name="trip-start"
-                                    value="2020-07-01" min="2020-07-01" max="2021-07-01">
+                            <label name="return">Return</label>
+                            <input type="date" id="returnDate" name="returnDate">
                         </div>
                     </div>
                     <input type="submit" name="search" value="Search" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
@@ -57,7 +55,7 @@
         </main>
 
 
-        <section class="trip">
+        <!-- <section class="trip">
             <div class="trip-content">
                 <div class="trip-selected">
                     <h2 class="trip-city">Naples, Italy</h2>
@@ -98,7 +96,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
         
         
         <section>
