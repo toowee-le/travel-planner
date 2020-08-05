@@ -1,12 +1,18 @@
 import { geonamesAPI, weatherbitAPI, pixabayAPI, restCountriesAPI } from './api'
+import { getDaysLeft } from './helpers'
 
 /**
  * Global Variables
  */
 
+ // Empty opject to store all the data for the new trip
 let newTrip = {};
+
 let tripList = document.querySelector('.trip-list');
 let modal = document.querySelector('.modal');
+
+let departDate = document.getElementById('departDate');
+let returnDate = document.getElementById('returnDate');
 
 /**
  * End Global Variables
@@ -16,7 +22,6 @@ let modal = document.querySelector('.modal');
 export const handleSubmit = async (event) => {
     event.preventDefault();
 
-    // DOM elements needed
     const form = document.forms['travel-form']['to'].value;
     if (form !== '') {
         modal.classList.add('active');
@@ -36,7 +41,7 @@ export const handleSubmit = async (event) => {
             newTrip.subRegion = countryInfo[0].subregion;
             newTrip.languages = countryInfo[0].languages[0].name;
             newTrip.currency = countryInfo[0].currencies[0].code;
-            newTrip.timezone = countryInfo[0].timezones[1];
+            newTrip.timezone = countryInfo[0].timezones[0];
         })
 
         await weatherbitAPI(newTrip.lat, newTrip.lon)
@@ -52,6 +57,10 @@ export const handleSubmit = async (event) => {
         .then(photo => {
             newTrip.photo = photo.hits[0].webformatURL;
         })
+
+        newTrip.departing = departDate.value.split("-").reverse().join("-").replace(/-/g, "/");
+        newTrip.returning = returnDate.value.split("-").reverse().join("-").replace(/-/g, "/");
+        newTrip.countdown = getDaysLeft(Date.now(), departDate.value);
 
         console.log(newTrip);
 
@@ -97,9 +106,10 @@ const createNewTrip = (data) => {
             </div>
             
             <div class="weather-info">
-                <h3 class="destination">My trip to: <span  class="highlight">${data.city}, ${data.country}</span></h3>
-                <h3 class="departing">Departing: <span class="highlight">14/08/2020</span></h3>
-                <p class="countdown">Your trip to ${data.city} is <strong>10</strong> days away and you will return to London on 22/08/2020.</p>
+                <h3 class="destination">My trip to: <span  class="highlight">${data.city}</span></h3>
+                <h3 class="departing">Departing: <span class="highlight">${data.departing}</span></h3>
+                <h3 class="returning">Returning: <span class="highlight">${data.returning}</span></h3>
+                <p class="countdown">${data.city} is <strong>${data.countdown}</strong> days away.</p>
                 <div class="btn-group">
                     <button class="btn save-trip">Save trip</button>
                     <button class="btn delete-trip">Delete trip</button>
@@ -108,16 +118,16 @@ const createNewTrip = (data) => {
                 <p>Weather forecast:</p>
                 <div class="weather-forecast">
                     <div class="weather-current">
-                        <p class="weather-date">Current weather:
+                        <p class="weather-date">Today:
                             <br>02/08/2020
                         </p>
-                        <img class="weather-icon" src="public/${data.icon}.png" alt="Weather Icon">
+                        <img class="weather-icon" src="https://www.weatherbit.io/static/img/icons/${data.icon}.png" alt="Weather Icon">
                         <p class="weather-description">${data.description}</p>
                         <p class="weather-temp">Low: ${data.currentMinTemp}&#8451; <span class="divider">|</span> High: ${data.currentMaxTemp}&#8451;</p>
                     </div>
                     <div class="weather-future">
                         <p class="weather-date">Future forecast:<br>14/08/2020</p>
-                        <img class="weather-icon" src="assets/${data.icon}.png" alt="Weather Icon">
+                        <img class="weather-icon" src="https://www.weatherbit.io/static/img/icons/${data.icon}.png" alt="Weather Icon">
                         <p class="weather-description">Broken Clouds</p>
                         <p class="weather-temp">Low: 22&#8451; <span class="divider">|</span> High: 25&#8451;</p>
                     </div>
