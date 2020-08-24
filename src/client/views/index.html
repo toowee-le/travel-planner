@@ -1,62 +1,79 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-    <head>
-        <meta charset="utf-8">
-        <title>Travel Planner</title>
-        <!-- Font Awesome-->
-        <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
-    </head>
+  <head>
+    <meta charset="utf-8" />
+    <title>Travel Planner</title>
+    <!-- Font Awesome-->
+    <link
+      rel="stylesheet"
+      href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css"
+    />
+  </head>
 
-    <body>
+  <body>
+    <header>
+      <div class="logo"><span class="logo-brand"> Travel</span>Planner</div>
+    </header>
 
-        <header>
-            <div class="logo">
-                <span class="logo-brand"> Travel</span>Planner
+    <main>
+      <div class="travel-form-bg">
+        <img src="../assets/img-1.jpg" alt="Slide 1" />
+      </div>
+
+      <section class="travel-form-section">
+        <h1 class="title">
+          <span class="br-1">Plan Your</span>
+          <span class="br-2">Next Travel</span>
+        </h1>
+
+        <form name="travel-form" onsubmit="return Client.handleSubmit(event)">
+          <h2>Travel Planner</h2>
+          <p>Where is your next destination?</p>
+          <div class="row">
+            <div class="col">
+              <label name="from">From</label>
+              <input
+                id="from"
+                type="text"
+                name="from"
+                value=""
+                placeholder="Country or city"
+              />
             </div>
-        </header>
-
-        <main>
-            <div class="travel-form-bg">
-                <img src="../assets/img-1.jpg" alt="Slide 1">
+            <div class="col">
+              <label name="to">To</label>
+              <input
+                id="to"
+                type="text"
+                name="to"
+                value=""
+                placeholder="Country or city"
+              />
             </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <label name="depart">Depart</label>
+              <input type="date" id="departDate" name="departDate" />
+            </div>
+            <div class="col">
+              <label name="return">Return</label>
+              <input type="date" id="returnDate" name="returnDate" />
+            </div>
+          </div>
+          <input
+            type="submit"
+            name="search"
+            value="Search"
+            onclick="return Client.handleSubmit(event)"
+            onsubmit="return Client.handleSubmit(event)"
+          />
+        </form>
+      </section>
+    </main>
 
-            <section class="travel-form-section">
-                <h1 class="title">
-                    <span class="br-1">Plan Your</span>
-                    <span class="br-2">Next Travel</span>
-                </h1>
-
-                <form name="travel-form" onsubmit="return Client.handleSubmit(event)">
-                    <h2>Travel Planner</h2>
-                    <p>Where is your next destination?</p>
-                    <div class="row">
-                        <div class="col">
-                            <label name="from">From</label>
-                            <input id="from" type="text" name="from" value="" placeholder="Country or city">
-                        </div>
-                        <div class="col">
-                            <label name="to">To</label>
-                            <input id="to" type="text" name="to" value="" placeholder="Country or city">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <label name="depart">Depart</label>
-                            <input type="date" id="departDate" name="departDate">
-                        </div>
-                        <div class="col">
-                            <label name="return">Return</label>
-                            <input type="date" id="returnDate" name="returnDate">
-                        </div>
-                    </div>
-                    <input type="submit" name="search" value="Search" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
-                </form>
-            </section>
-        </main>
-
-
-        <!-- <section class="trip">
-            <div class="trip-content">
+    <section class="trip">
+      <!-- <div class="trip-content">
                 <div class="trip-selected">
                     <h2 class="trip-city">Naples, Italy</h2>
                     <img class="trip-photo" src="../assets/example.png" alt="">
@@ -95,22 +112,25 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </section> -->
-        
-        
-        <section>
-            <div class="modal"></div>
-        </section>
+            </div>-->
+    </section>
 
-        <footer>
-            <p>&copy; 2020 Travel Planner created and designed by <a href="https://github.com/toowee-le" target="_blank">Tuyet Le</a></p>
-            <p>Web APIs:
-                <a href="https://www.geonames.org/" target="_blank">Geonames</a>,
-                <a href="https://www.weatherbit.io/api" target="_blank">WeatherBit</a>,
-                <a href="https://pixabay.com/api/docs/" target="_blank">Pixabay</a>,
-                <a href="https://restcountries.eu/" target="_blank">REST Countries</a></p>
-        </footer>
+    <section>
+      <div class="modal"></div>
+    </section>
 
-    </body>
+    <footer>
+      <p>
+        &copy; 2020 Travel Planner created and designed by
+        <a href="https://github.com/toowee-le" target="_blank">Tuyet Le</a>
+      </p>
+      <p>
+        Web APIs:
+        <a href="https://www.geonames.org/" target="_blank">Geonames</a>,
+        <a href="https://www.weatherbit.io/api" target="_blank">WeatherBit</a>,
+        <a href="https://pixabay.com/api/docs/" target="_blank">Pixabay</a>,
+        <a href="https://restcountries.eu/" target="_blank">REST Countries</a>
+      </p>
+    </footer>
+  </body>
 </html>
