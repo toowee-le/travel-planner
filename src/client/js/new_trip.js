@@ -60,5 +60,5 @@ export const createNewTrip = (entry, savedTrip, data, entryType) => {
 
   entryType === "modal" ? entry.append(element) : savedTrip.prepend(element);
 
-  handleResult(element);
+  handleResult(element, data, entryType);
 };

@@ -13,6 +13,7 @@ import { getDaysLeft } from "./helpers";
 
 // Empty opject to store all the data for the new trip
 let newTrip = {};
+let trips = [];
 
 let tripList = document.querySelector(".trip");
 let modal = document.querySelector(".modal");
@@ -79,22 +80,27 @@ export const handleSubmit = async (event) => {
   }
 };
 
-export const handleResult = async (entry) => {
+export const handleResult = async (entry, data, entryType) => {
   let save = document.querySelector(".save-trip");
   let deleteBtn = document.querySelector(".delete-trip");
 
-  deleteBtn.addEventListener("click", () => {
-    modal.classList.remove("active");
-    tripList.innerHTML = "";
-    travelForm.reset();
-  });
+  if (entryType === "modal") {
+    deleteBtn.addEventListener("click", () => {
+      modal.classList.remove("active");
+      tripList.innerHTML = "";
+      travelForm.reset();
+    });
 
-  save.addEventListener("click", () => {
-    modal.classList.remove("active");
-    save.style.display = "none";
-    tripList.prepend(entry);
-    travelForm.reset();
-  });
+    save.addEventListener("click", () => {
+      trips.unshift(data);
+      console.log(trips);
+
+      modal.classList.remove("active");
+      save.style.display = "none";
+      tripList.prepend(entry);
+      travelForm.reset();
+    });
+  }
 };
 
 // POST request to the server
