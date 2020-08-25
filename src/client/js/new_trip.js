@@ -1,10 +1,14 @@
+import { handleResult } from "./app";
+
 /**
  * @description - HTML template for adding a new trip
- * @param {Node} modal - display the search result in a modal
- * @param {object} data - contains all the data stored for adding a new trip
+ * @param {Node} entry - display new trip entry
+ * @param {Node} savedTrip - add new trip entry to the entries list
+ * @param {object} data - contains all the data from the API about the new trip
+ * @param {string} entryType - determine where the entry will be added on the UI
  */
 
-export const createNewTrip = (modal, data) => {
+export const createNewTrip = (entry, savedTrip, data, entryType) => {
   let element = document.createElement("div");
   element.classList.add("trip-content");
 
@@ -53,5 +57,8 @@ export const createNewTrip = (modal, data) => {
     `;
 
   element.innerHTML = innerHTML;
-  modal.append(element);
+
+  entryType === "modal" ? entry.append(element) : savedTrip.prepend(element);
+
+  handleResult(element);
 };

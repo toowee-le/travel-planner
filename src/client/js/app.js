@@ -74,22 +74,27 @@ export const handleSubmit = async (event) => {
     newTrip.countdown = getDaysLeft(Date.now(), departDate.value);
 
     createNewTrip(modal, tripList, newTrip, "modal");
-
-    let save = document.querySelector(".save-trip");
-    let deleteBtn = document.querySelector(".delete-trip");
-
-    deleteBtn.addEventListener("click", () => {
-      modal.classList.remove("active");
-      travelForm.reset();
-    });
-
-    // save.addEventListener("click", () => {
-    //   modal.classList.remove("active");
-    //   tripList.prepend();
-    // });
   } else {
     alert("Please enter a destination");
   }
+};
+
+export const handleResult = async (entry) => {
+  let save = document.querySelector(".save-trip");
+  let deleteBtn = document.querySelector(".delete-trip");
+
+  deleteBtn.addEventListener("click", () => {
+    modal.classList.remove("active");
+    tripList.innerHTML = "";
+    travelForm.reset();
+  });
+
+  save.addEventListener("click", () => {
+    modal.classList.remove("active");
+    save.style.display = "none";
+    tripList.prepend(entry);
+    travelForm.reset();
+  });
 };
 
 // POST request to the server
