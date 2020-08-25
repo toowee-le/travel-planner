@@ -16,6 +16,7 @@ let newTrip = {};
 
 let tripList = document.querySelector(".trip");
 let modal = document.querySelector(".modal");
+let travelForm = document.getElementById("travelForm");
 
 let departDate = document.getElementById("departDate");
 let returnDate = document.getElementById("returnDate");
@@ -72,26 +73,24 @@ export const handleSubmit = async (event) => {
       .replace(/-/g, "/");
     newTrip.countdown = getDaysLeft(Date.now(), departDate.value);
 
-    createNewTrip(modal, newTrip);
+    createNewTrip(modal, tripList, newTrip, "modal");
 
     let save = document.querySelector(".save-trip");
+    let deleteBtn = document.querySelector(".delete-trip");
 
-    save.addEventListener("click", () => {
-      console.log("clicked");
+    deleteBtn.addEventListener("click", () => {
       modal.classList.remove("active");
+      travelForm.reset();
     });
+
+    // save.addEventListener("click", () => {
+    //   modal.classList.remove("active");
+    //   tripList.prepend();
+    // });
   } else {
     alert("Please enter a destination");
   }
 };
-
-// export const handleResult = async () => {
-//   let save = document.querySelector(".save-trip");
-
-//   save.addEventListener("click", () => {
-//     console.log("clicked");
-//   });
-// };
 
 // POST request to the server
 export const postRequest = async (url = "", data = {}) => {
