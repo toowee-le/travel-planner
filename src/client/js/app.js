@@ -111,8 +111,12 @@ export const handleResult = async (entry, data, entryType, id) => {
     });
 
     save.addEventListener("click", () => {
+      // Add new trip data to global variable
       trips.unshift(data);
       console.log(trips);
+
+      // Add new trip to localStorage
+      localStorage.setItem("savedTrips", JSON.stringify(trips));
 
       save.style.display = "none";
       tripList.prepend(entry);
@@ -135,6 +139,8 @@ const closeModal = () => {
   modal.classList.remove("active");
   document.body.style.overflowY = "auto";
 };
+
+window.onload = () => JSON.parse(localStorage.getItem("savedTrips"));
 
 /**
  * @description - POST request to the server
