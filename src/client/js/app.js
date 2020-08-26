@@ -11,7 +11,6 @@ import { getDaysLeft } from "./helpers";
  * Global Variables
  */
 
-// Empty opject to store all the data for the new trip
 let newTrip = {};
 let trips = [];
 
@@ -23,8 +22,7 @@ let departDate = document.getElementById("departDate");
 let returnDate = document.getElementById("returnDate");
 
 /**
- * End Global Variables
- * Begin Main Functions
+ * @description - handle the main function for creating a new trip entry after submitting the form
  */
 
 export const handleSubmit = async (event) => {
@@ -75,11 +73,26 @@ export const handleSubmit = async (event) => {
     newTrip.countdown = getDaysLeft(Date.now(), departDate.value);
     newTrip.id = Date.now();
 
+    let today = new Date();
+    let dd = String(today.getDate()).padStart(2, "0");
+    let mm = String(today.getMonth() + 1).padStart(2, "0");
+    let yyyy = today.getFullYear();
+    today = `${dd}/${mm}/${yyyy}`;
+    newTrip.dateToday = today;
+
     createNewTrip(modal, tripList, newTrip, "modal");
   } else {
     alert("Please enter a destination");
   }
 };
+
+/**
+ * @description - handle the new trip entry
+ * @param {Node} entry - element for new trip entry
+ * @param {object} data - API data
+ * @param {string} entryType - determine where the trip entry will be added on the UI (modal/trip list)
+ * @param {string} id - unique ID value of new element
+ */
 
 export const handleResult = async (entry, data, entryType, id) => {
   let save = document.querySelector(".save-trip");
@@ -107,7 +120,10 @@ export const handleResult = async (entry, data, entryType, id) => {
   }
 };
 
-// Toggle modal
+/**
+ * @description - functions for handling event listeners
+ */
+
 const openModal = () => {
   modal.classList.add("active");
   document.body.style.overflowY = "hidden";
@@ -118,7 +134,10 @@ const closeModal = () => {
   document.body.style.overflowY = "auto";
 };
 
-// POST request to the server
+/**
+ * @description - POST request to the server
+ */
+
 export const postRequest = async (url = "", data = {}) => {
   const res = await fetch(url, {
     method: "POST",
