@@ -32,7 +32,7 @@ export const handleSubmit = async (event) => {
 
   const form = document.forms["travel-form"]["to"].value;
   if (form !== "") {
-    modal.classList.add("active");
+    openModal();
     const destination = document.getElementById("to").value;
 
     await geonamesAPI(destination).then((geoData) => {
@@ -73,6 +73,7 @@ export const handleSubmit = async (event) => {
       .join("-")
       .replace(/-/g, "/");
     newTrip.countdown = getDaysLeft(Date.now(), departDate.value);
+    newTrip.id = `${departDate.value}`;
 
     createNewTrip(modal, tripList, newTrip, "modal");
   } else {
@@ -86,7 +87,7 @@ export const handleResult = async (entry, data, entryType) => {
 
   if (entryType === "modal") {
     deleteBtn.addEventListener("click", () => {
-      modal.classList.remove("active");
+      closeModal();
       tripList.innerHTML = "";
       travelForm.reset();
     });
@@ -95,12 +96,23 @@ export const handleResult = async (entry, data, entryType) => {
       trips.unshift(data);
       console.log(trips);
 
-      modal.classList.remove("active");
+      closeModal();
       save.style.display = "none";
       tripList.prepend(entry);
       travelForm.reset();
     });
   }
+};
+
+// Toggle modal
+const openModal = () => {
+  modal.classList.add("active");
+  document.body.style.overflowY = "hidden";
+};
+
+const closeModal = () => {
+  modal.classList.remove("active");
+  document.body.style.overflowY = "auto";
 };
 
 // POST request to the server
