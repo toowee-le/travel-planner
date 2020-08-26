@@ -73,7 +73,9 @@ export const handleSubmit = async (event) => {
       .join("-")
       .replace(/-/g, "/");
     newTrip.countdown = getDaysLeft(Date.now(), departDate.value);
-    newTrip.id = `${departDate.value}`;
+    newTrip.id = Date.now();
+
+    console.log(newTrip.id);
 
     createNewTrip(modal, tripList, newTrip, "modal");
   } else {
@@ -96,10 +98,10 @@ export const handleResult = async (entry, data, entryType) => {
       trips.unshift(data);
       console.log(trips);
 
-      closeModal();
       save.style.display = "none";
       tripList.prepend(entry);
       travelForm.reset();
+      closeModal();
     });
   }
 };
