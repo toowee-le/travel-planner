@@ -75,17 +75,18 @@ export const handleSubmit = async (event) => {
     newTrip.countdown = getDaysLeft(Date.now(), departDate.value);
     newTrip.id = Date.now();
 
-    console.log(newTrip.id);
-
     createNewTrip(modal, tripList, newTrip, "modal");
   } else {
     alert("Please enter a destination");
   }
 };
 
-export const handleResult = async (entry, data, entryType) => {
+export const handleResult = async (entry, data, entryType, id) => {
   let save = document.querySelector(".save-trip");
   let deleteBtn = document.querySelector(".delete-trip");
+
+  let saveID = save.dataset.id;
+  let deleteID = deleteBtn.dataset.id;
 
   if (entryType === "modal") {
     deleteBtn.addEventListener("click", () => {

@@ -32,8 +32,8 @@ export const createNewTrip = (entry, savedTrip, data, entryType) => {
             <h3 class="returning">Returning: <span class="highlight">${data.returning}</span></h3>
             <p class="countdown">${data.city} is <strong>${data.countdown}</strong> days away.</p>
             <div class="btn-group">
-                <button class="btn save-trip">Save trip</button>
-                <button class="btn delete-trip">Delete trip</button>
+                <button class="btn save-trip" data-id="${data.id}">Save trip</button>
+                <button class="btn delete-trip" data-id="${data.id}">Delete trip</button>
             </div>
             <hr>
             <p>Weather forecast:</p>
@@ -60,5 +60,5 @@ export const createNewTrip = (entry, savedTrip, data, entryType) => {
 
   entryType === "modal" ? entry.append(element) : savedTrip.prepend(element);
 
-  handleResult(element, data, entryType);
+  handleResult(element, data, entryType, data.id);
 };
