@@ -141,24 +141,3 @@ const closeModal = () => {
 };
 
 window.onload = () => JSON.parse(localStorage.getItem("savedTrips"));
-
-/**
- * @description - POST request to the server
- */
-
-export const postRequest = async (url = "", data = {}) => {
-  const res = await fetch(url, {
-    method: "POST",
-    credentials: "same-origin",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(data),
-  });
-  try {
-    const getData = await res.json();
-    return getData;
-  } catch (err) {
-    console.log("Error:", err);
-  }
-};
