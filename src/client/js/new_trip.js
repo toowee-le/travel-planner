@@ -39,8 +39,8 @@ export const createNewTrip = (entry, savedTrip, data, entryType) => {
             <p>Weather forecast:</p>
             <div class="weather-forecast">
                 <div class="weather-current">
-                    <p class="weather-date">Today:
-                        <br>02/08/2020
+                    <p class="weather-date">Today's forecast:
+                        <br>${data.dateToday}
                     </p>
                     <img class="weather-icon" src="https://www.weatherbit.io/static/img/icons/${data.icon}.png" alt="Weather Icon">
                     <p class="weather-description">${data.description}</p>
