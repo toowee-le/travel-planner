@@ -32,8 +32,8 @@ export const createNewTrip = (entry, savedTrip, data, entryType) => {
             <h3 class="returning">Returning: <span class="highlight">${data.returning}</span></h3>
             <p class="countdown">${data.city} is <strong>${data.countdown}</strong> days away.</p>
             <div class="btn-group">
-                <button class="btn save-trip" data-id="${data.id}">Save trip</button>
-                <button class="btn delete-trip" data-id="${data.id}">Delete trip</button>
+                <button class="btn save-trip" id="saveTrip_${data.id}">Save trip</button>
+                <button class="btn delete-trip" id="deleteTrip_${data.id}">Delete trip</button>
             </div>
             <hr>
             <p>Weather forecast:</p>

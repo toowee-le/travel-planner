@@ -97,27 +97,25 @@ export const handleSubmit = async (event) => {
  */
 
 export const handleResult = async (entry, data, entryType, id) => {
-  let save = document.querySelector(".save-trip");
-  let deleteBtn = document.querySelector(".delete-trip");
-
-  let saveID = save.dataset.id;
-  let deleteID = deleteBtn.dataset.id;
+  let save = document.getElementById(`saveTrip_${id}`);
+  let deleteBtn = document.getElementById(`deleteTrip_${id}`);
 
   if (entryType === "modal") {
     deleteBtn.addEventListener("click", () => {
-      closeModal();
       tripList.innerHTML = "";
       travelForm.reset();
+      closeModal();
     });
 
     save.addEventListener("click", () => {
       // Add new trip data to global variable
-      trips.unshift(data);
+      trips.push(data);
       console.log(trips);
 
       // Add new trip to localStorage
       localStorage.setItem("savedTrips", JSON.stringify(trips));
 
+      // Hide the save button when new trip is added to the list
       save.style.display = "none";
       tripList.prepend(entry);
       travelForm.reset();
