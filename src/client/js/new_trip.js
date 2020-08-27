@@ -3,12 +3,11 @@ import { handleResult } from "./app";
 /**
  * @description - HTML template for adding a new trip
  * @param {Node} entry - display new trip entry
- * @param {Node} savedTrip - add new trip entry to the entries list
- * @param {object} data - contains all the data from the API about the new trip
+ * @param {object} data - new trip data
  * @param {string} entryType - determine where the entry will be added on the UI
  */
 
-export const createNewTrip = (entry, savedTrip, data, entryType) => {
+export const createNewTrip = (entry, data, entryType) => {
   let element = document.createElement("div");
   element.classList.add("trip-content");
 
@@ -58,7 +57,7 @@ export const createNewTrip = (entry, savedTrip, data, entryType) => {
 
   element.innerHTML = innerHTML;
 
-  entryType === "modal" ? entry.append(element) : savedTrip.prepend(element);
+  entry.append(element);
 
   handleResult(element, data, entryType, data.id);
 };

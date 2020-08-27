@@ -11,8 +11,10 @@ import { getDaysLeft } from "./helpers";
  * Global Variables
  */
 
+// Empty object to save API data
 let newTrip = {};
-let trips = [];
+// Empty array to store new trips
+let tripsArray = [];
 
 let tripList = document.querySelector(".trip");
 let modal = document.querySelector(".modal");
@@ -82,7 +84,7 @@ export const handleSubmit = async (event) => {
     newTrip.dateToday = today;
 
     // Pass API data through to HTML template for adding a new trip entry to the UI
-    createNewTrip(modal, tripList, newTrip, "modal");
+    createNewTrip(modal, newTrip, "modal");
   } else {
     alert("Please enter a destination");
   }
@@ -91,7 +93,7 @@ export const handleSubmit = async (event) => {
 /**
  * @description - handle the new trip entry
  * @param {Node} entry - element for new trip entry
- * @param {object} data - API data
+ * @param {object} data - new trip data
  * @param {string} entryType - determine where the trip entry will be added on the UI (modal/trip list)
  * @param {string} id - unique ID value of new element
  */
@@ -108,12 +110,12 @@ export const handleResult = async (entry, data, entryType, id) => {
     });
 
     save.addEventListener("click", () => {
-      // Add new trip data to global variable
-      trips.push(data);
-      console.log(trips);
+      // Clone the current trip object and push the new data to the global array variable
+      let obj = { ...data };
+      tripsArray.push(obj);
 
-      // Add new trip to localStorage
-      localStorage.setItem("savedTrips", JSON.stringify(trips));
+      // Add new trip to local storage
+      localStorage.setItem("trip", JSON.stringify(tripsArray));
 
       // Hide the save button when new trip is added to the list
       save.style.display = "none";
