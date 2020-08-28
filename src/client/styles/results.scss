@@ -1,6 +1,7 @@
 @import "config";
 
 .trip-content {
+  position: fixed;
   display: flex;
   width: 750px;
   margin: 2em auto;
