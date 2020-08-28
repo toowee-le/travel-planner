@@ -5,7 +5,7 @@ import {
   restCountriesAPI,
 } from "./api";
 import { createNewTrip } from "./new_trip";
-import { getDaysLeft } from "./helpers";
+import { getDaysLeft, reformatDate } from "./helpers";
 
 // Global object to store API data
 let newTrip = {};
@@ -61,16 +61,8 @@ export const handleSubmit = async (e) => {
       newTrip.photo = photo.hits[0].webformatURL;
     });
 
-    newTrip.departing = departDate.value
-      .split("-")
-      .reverse()
-      .join("-")
-      .replace(/-/g, "/");
-    newTrip.returning = returnDate.value
-      .split("-")
-      .reverse()
-      .join("-")
-      .replace(/-/g, "/");
+    newTrip.departing = reformatDate(departDate.value);
+    newTrip.returning = reformatDate(returnDate.value);
     newTrip.countdown = getDaysLeft(Date.now(), departDate.value);
     newTrip.id = Date.now();
 
