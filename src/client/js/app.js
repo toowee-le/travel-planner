@@ -7,8 +7,12 @@ import {
 import { createNewTrip } from "./new_trip";
 import { getDaysLeft, reformatDate } from "./helpers";
 
-// Global object to store API data
-let newTrip = {};
+/**
+ * Global variables
+ */
+
+let tripList = document.querySelector(".trip");
+let modal = document.querySelector(".modal");
 
 // Check if local storage exists
 let tripsArray = localStorage.getItem("trips")
@@ -16,14 +20,8 @@ let tripsArray = localStorage.getItem("trips")
   : [];
 const tripData = JSON.parse(localStorage.getItem("trips"));
 
-let tripList = document.querySelector(".trip");
-let modal = document.querySelector(".modal");
-let form = document.getElementById("travelForm");
-let departDate = document.getElementById("departDate");
-let returnDate = document.getElementById("returnDate");
-
 /**
- * @description - Handle the main function for submitting the form
+ * @description - Handle the main function for form submit
  */
 
 export const handleSubmit = async (e) => {
@@ -33,6 +31,9 @@ export const handleSubmit = async (e) => {
   if (form !== "") {
     openModal();
     const destination = document.getElementById("to").value;
+    let departDate = document.getElementById("departDate");
+    let returnDate = document.getElementById("returnDate");
+    let newTrip = {};
 
     await geonamesAPI(destination).then((geoData) => {
       newTrip.city = geoData.geonames[0].name;
@@ -94,6 +95,7 @@ export const handleSubmit = async (e) => {
 export const handleResult = async (entry, data, ui, id) => {
   let save = document.getElementById(`saveTrip_${id}`);
   let deleteBtn = document.getElementById(`deleteTrip_${id}`);
+  let form = document.getElementById("travelForm");
 
   if (ui === "modal") {
     // Handle buttons on the modal
