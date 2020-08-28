@@ -7,32 +7,27 @@ import {
 import { createNewTrip } from "./new_trip";
 import { getDaysLeft } from "./helpers";
 
-/**
- * @description - Global variables
- */
-
-// Empty object to save API data
+// Global object to store API data
 let newTrip = {};
 
+// Check if local storage exists
 let tripsArray = localStorage.getItem("trips")
   ? JSON.parse(localStorage.getItem("trips"))
   : [];
+const tripData = JSON.parse(localStorage.getItem("trips"));
 
 let tripList = document.querySelector(".trip");
 let modal = document.querySelector(".modal");
-let travelForm = document.getElementById("travelForm");
+let form = document.getElementById("travelForm");
 let departDate = document.getElementById("departDate");
 let returnDate = document.getElementById("returnDate");
 
-// Local storage
-const data = JSON.parse(localStorage.getItem("trips"));
-
 /**
- * @description - Handle the main function for creating a new trip entry after submitting the form
+ * @description - Handle the main function for submitting the form
  */
 
-export const handleSubmit = async (event) => {
-  event.preventDefault();
+export const handleSubmit = async (e) => {
+  e.preventDefault();
 
   const form = document.forms["travel-form"]["to"].value;
   if (form !== "") {
@@ -98,17 +93,18 @@ export const handleSubmit = async (event) => {
  * @description - Handle the new trip entry
  * @param {Node} entry - Element for new trip entry
  * @param {object} data - New trip data
- * @param {string} entryType - Determine where the trip entry will be added on the UI (modal/trip list)
+ * @param {string} ui - Determine where the trip entry will be added on the UI (modal/list)
  * @param {string} id - Unique ID assigned to new element
  */
 
-export const handleResult = async (entry, data, entryType, id) => {
+export const handleResult = async (entry, data, ui, id) => {
   let save = document.getElementById(`saveTrip_${id}`);
   let deleteBtn = document.getElementById(`deleteTrip_${id}`);
 
-  if (entryType === "modal") {
+  if (ui === "modal") {
+    // Handle buttons on the modal
     deleteBtn.addEventListener("click", () => {
-      travelForm.reset();
+      form.reset();
       closeModal();
     });
 
@@ -116,7 +112,6 @@ export const handleResult = async (entry, data, entryType, id) => {
       // Clone the current trip object and push the new data to the global array variable
       let obj = { ...data };
       tripsArray.push(obj);
-      console.log(tripsArray);
 
       // Add new trip to local storage
       localStorage.setItem("trips", JSON.stringify(tripsArray));
@@ -124,19 +119,21 @@ export const handleResult = async (entry, data, entryType, id) => {
       // Hide the save button when new trip is added to the list
       save.style.display = "none";
       tripList.prepend(entry);
-      travelForm.reset();
+      form.reset();
       closeModal();
     });
-  }
-};
+  } else {
+    // Handle save and delete buttons on the trip list
+    save.style.display = "none";
 
-/**
- * @description - Load the saved trips from local storage
- */
-const loadTrips = () => {
-  for (let trip of data) {
-    console.log(trip);
-    createNewTrip(tripList, trip);
+    // Delete the selected trip entry from UI and local storage
+    deleteBtn.addEventListener("click", () => {
+      let removeTrip = tripsArray.find((trip) => trip.id === id);
+      tripsArray.splice(tripsArray.indexOf(removeTrip), 1);
+      entry.remove(removeTrip);
+      localStorage.setItem("trips", JSON.stringify([]));
+      localStorage.setItem("trips", JSON.stringify(tripsArray));
+    });
   }
 };
 
@@ -154,4 +151,13 @@ const closeModal = () => {
   document.body.style.overflowY = "auto";
 };
 
+/**
+ * @description - Load the saved trips from local storage
+ */
+
+const loadTrips = () => {
+  for (let trip of tripData) {
+    createNewTrip(tripList, trip, "list");
+  }
+};
 window.onload = () => loadTrips();

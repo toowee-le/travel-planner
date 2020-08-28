@@ -2,12 +2,12 @@ import { handleResult } from "./app";
 
 /**
  * @description - HTML template for adding a new trip
- * @param {Node} entry - display new trip entry
- * @param {object} data - new trip data
- * @param {string} entryType - determine where the entry will be added on the UI
+ * @param {Node} entry - New element for new trip
+ * @param {object} data - Data fetched from API for new trip
+ * @param {string} ui - Determines where the new trip entry is on the UI (modal or saved trip list)
  */
 
-export const createNewTrip = (entry, data, entryType) => {
+export const createNewTrip = (entry, data, ui) => {
   let element = document.createElement("div");
   element.classList.add("trip-content");
 
@@ -59,5 +59,5 @@ export const createNewTrip = (entry, data, entryType) => {
 
   entry.append(element);
 
-  handleResult(element, data, entryType, data.id);
+  handleResult(element, data, ui, data.id);
 };
