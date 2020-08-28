@@ -8,23 +8,27 @@ import { createNewTrip } from "./new_trip";
 import { getDaysLeft } from "./helpers";
 
 /**
- * Global Variables
+ * @description - Global variables
  */
 
 // Empty object to save API data
 let newTrip = {};
-// Empty array to store new trips
-let tripsArray = [];
+
+let tripsArray = localStorage.getItem("trips")
+  ? JSON.parse(localStorage.getItem("trips"))
+  : [];
 
 let tripList = document.querySelector(".trip");
 let modal = document.querySelector(".modal");
 let travelForm = document.getElementById("travelForm");
-
 let departDate = document.getElementById("departDate");
 let returnDate = document.getElementById("returnDate");
 
+// Local storage
+const data = JSON.parse(localStorage.getItem("trips"));
+
 /**
- * @description - handle the main function for creating a new trip entry after submitting the form
+ * @description - Handle the main function for creating a new trip entry after submitting the form
  */
 
 export const handleSubmit = async (event) => {
@@ -75,7 +79,7 @@ export const handleSubmit = async (event) => {
     newTrip.countdown = getDaysLeft(Date.now(), departDate.value);
     newTrip.id = Date.now();
 
-    // Get today's date for current weather forecast
+    // Get the current date to display with current weather forecast
     let today = new Date();
     let dd = String(today.getDate()).padStart(2, "0");
     let mm = String(today.getMonth() + 1).padStart(2, "0");
@@ -83,7 +87,7 @@ export const handleSubmit = async (event) => {
     today = `${dd}/${mm}/${yyyy}`;
     newTrip.dateToday = today;
 
-    // Pass API data through to HTML template for adding a new trip entry to the UI
+    // Pass API data through to the HTML template to add a new trip entry to the UI
     createNewTrip(modal, newTrip, "modal");
   } else {
     alert("Please enter a destination");
@@ -91,11 +95,11 @@ export const handleSubmit = async (event) => {
 };
 
 /**
- * @description - handle the new trip entry
- * @param {Node} entry - element for new trip entry
- * @param {object} data - new trip data
- * @param {string} entryType - determine where the trip entry will be added on the UI (modal/trip list)
- * @param {string} id - unique ID value of new element
+ * @description - Handle the new trip entry
+ * @param {Node} entry - Element for new trip entry
+ * @param {object} data - New trip data
+ * @param {string} entryType - Determine where the trip entry will be added on the UI (modal/trip list)
+ * @param {string} id - Unique ID assigned to new element
  */
 
 export const handleResult = async (entry, data, entryType, id) => {
@@ -104,7 +108,6 @@ export const handleResult = async (entry, data, entryType, id) => {
 
   if (entryType === "modal") {
     deleteBtn.addEventListener("click", () => {
-      tripList.innerHTML = "";
       travelForm.reset();
       closeModal();
     });
@@ -113,9 +116,10 @@ export const handleResult = async (entry, data, entryType, id) => {
       // Clone the current trip object and push the new data to the global array variable
       let obj = { ...data };
       tripsArray.push(obj);
+      console.log(tripsArray);
 
       // Add new trip to local storage
-      localStorage.setItem("trip", JSON.stringify(tripsArray));
+      localStorage.setItem("trips", JSON.stringify(tripsArray));
 
       // Hide the save button when new trip is added to the list
       save.style.display = "none";
@@ -127,7 +131,17 @@ export const handleResult = async (entry, data, entryType, id) => {
 };
 
 /**
- * @description - functions for handling event listeners
+ * @description - Load the saved trips from local storage
+ */
+const loadTrips = () => {
+  for (let trip of data) {
+    console.log(trip);
+    createNewTrip(tripList, trip);
+  }
+};
+
+/**
+ * @description - Event listeners
  */
 
 const openModal = () => {
@@ -140,4 +154,4 @@ const closeModal = () => {
   document.body.style.overflowY = "auto";
 };
 
-window.onload = () => JSON.parse(localStorage.getItem("savedTrips"));
+window.onload = () => loadTrips();
