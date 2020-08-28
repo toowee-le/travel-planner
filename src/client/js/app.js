@@ -84,6 +84,8 @@ export const handleSubmit = async (e) => {
 
     // Pass API data through to the HTML template to add a new trip entry to the UI
     createNewTrip(modal, newTrip, "modal");
+    let loader = document.querySelector(".loader");
+    loader.style.display = "none";
   } else {
     alert("Please enter a destination");
   }
@@ -160,4 +162,5 @@ const loadTrips = () => {
     createNewTrip(tripList, trip, "list");
   }
 };
+
 window.onload = () => loadTrips();
