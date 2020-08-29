@@ -5,7 +5,7 @@ import {
   restCountriesAPI,
 } from "./api";
 import { createNewTrip } from "./new_trip";
-import { getDaysLeft, reformatDate } from "./helpers";
+import { getDaysLeft, reformatDate, formValidation } from "./helpers";
 
 /**
  * Global variables
@@ -27,15 +27,16 @@ const tripData = JSON.parse(localStorage.getItem("trips"));
 export const handleSubmit = async (e) => {
   e.preventDefault();
 
-  const form = document.forms["travel-form"]["to"].value;
-  if (form !== "") {
-    openModal();
-    const destination = document.getElementById("to").value;
-    let departDate = document.getElementById("departDate");
-    let returnDate = document.getElementById("returnDate");
-    let newTrip = {};
+  const from = document.forms["travel-form"]["from"].value;
+  const to = document.forms["travel-form"]["to"].value;
+  const departDate = document.getElementById("departDate").value;
+  const returnDate = document.getElementById("returnDate").value;
+  let newTrip = {};
 
-    await geonamesAPI(destination).then((geoData) => {
+  if (formValidation(from, to, departDate, returnDate)) {
+    openModal();
+
+    await geonamesAPI(to).then((geoData) => {
       newTrip.city = geoData.geonames[0].name;
       newTrip.country = geoData.geonames[0].countryName;
       newTrip.lat = geoData.geonames[0].lat;
@@ -62,9 +63,9 @@ export const handleSubmit = async (e) => {
       newTrip.photo = photo.hits[0].webformatURL;
     });
 
-    newTrip.departing = reformatDate(departDate.value);
-    newTrip.returning = reformatDate(returnDate.value);
-    newTrip.countdown = getDaysLeft(Date.now(), departDate.value);
+    newTrip.departing = reformatDate(departDate);
+    newTrip.returning = reformatDate(returnDate);
+    newTrip.countdown = getDaysLeft(Date.now(), departDate);
     newTrip.id = Date.now();
 
     // Get the current date to display with current weather forecast
@@ -77,14 +78,16 @@ export const handleSubmit = async (e) => {
 
     // Pass API data through to the HTML template to add a new trip entry to the UI
     createNewTrip(modal, newTrip, "modal");
+    const loader = document.getElementById("loader");
+    loader.style.display = "none";
   } else {
-    alert("Please enter a destination");
+    alert("Missing information in form.");
   }
 };
 
 /**
  * @description - Handle the new trip entry
- * @param {Node} entry - Element for new trip entry
+ * @param {Node} entry - Element for trip entry
  * @param {object} data - New trip data
  * @param {string} ui - Determine where the trip entry will be added on the UI (modal/list)
  * @param {string} id - Unique ID assigned to new element
@@ -97,11 +100,6 @@ export const handleResult = async (entry, data, ui, id) => {
 
   if (ui === "modal") {
     // Handle buttons on the modal
-    deleteBtn.addEventListener("click", () => {
-      form.reset();
-      closeModal();
-    });
-
     save.addEventListener("click", () => {
       // Clone the current trip object and push the new data to the global array variable
       let obj = { ...data };
@@ -116,19 +114,29 @@ export const handleResult = async (entry, data, ui, id) => {
       form.reset();
       closeModal();
     });
+
+    deleteBtn.addEventListener("click", () => {
+      deleteEntry(entry, id);
+      form.reset();
+      closeModal();
+    });
   } else {
     // Handle save and delete buttons on the trip list
     save.style.display = "none";
 
     // Delete the selected trip entry from UI and local storage
     deleteBtn.addEventListener("click", () => {
-      let removeTrip = tripsArray.find((trip) => trip.id === id);
-      tripsArray.splice(tripsArray.indexOf(removeTrip), 1);
-      entry.remove(removeTrip);
-      localStorage.setItem("trips", JSON.stringify([]));
-      localStorage.setItem("trips", JSON.stringify(tripsArray));
+      deleteEntry(entry, id);
     });
   }
+};
+
+const deleteEntry = (entry, id) => {
+  let removeTrip = tripsArray.find((trip) => trip.id === id);
+  tripsArray.splice(tripsArray.indexOf(removeTrip), 1);
+  entry.remove(removeTrip);
+  localStorage.setItem("trips", JSON.stringify([]));
+  localStorage.setItem("trips", JSON.stringify(tripsArray));
 };
 
 /**

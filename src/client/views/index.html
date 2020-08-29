@@ -42,6 +42,7 @@
                 name="from"
                 value=""
                 placeholder="Country or city"
+                required
               />
             </div>
             <div class="col">
@@ -52,17 +53,18 @@
                 name="to"
                 value=""
                 placeholder="Country or city"
+                required
               />
             </div>
           </div>
           <div class="row">
             <div class="col">
               <label name="depart">Depart</label>
-              <input type="date" id="departDate" name="departDate" />
+              <input type="date" id="departDate" name="departDate" required />
             </div>
             <div class="col">
               <label name="return">Return</label>
-              <input type="date" id="returnDate" name="returnDate" />
+              <input type="date" id="returnDate" name="returnDate" required />
             </div>
           </div>
           <input
@@ -80,7 +82,7 @@
 
     <section>
       <div class="modal">
-        <img src="../assets/loader.gif" class="loader" alt="Loading..." />
+        <img src="../assets/loader.gif" id="loader" alt="Loading..." />
       </div>
     </section>
 

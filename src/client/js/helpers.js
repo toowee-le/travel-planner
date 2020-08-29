@@ -21,3 +21,15 @@ export const getDaysLeft = (currentDate, departDate) => {
 export const reformatDate = (date) => {
   return date.split("-").reverse().join("-").replace(/-/g, "/");
 };
+
+/**
+ * @description Form validation
+ * @param {String} from - Departing from
+ * @param {String} to - Destination
+ * @param {String} departDate
+ * @param {String} returnDate
+ */
+
+export const formValidation = (to, from, departDate, returnDate) => {
+  if ((from, to, departDate, returnDate !== "")) return true;
+};
