@@ -114,13 +114,13 @@ export const handleResult = async (entry, data, ui, id) => {
       // Clone the current trip object and push the new data to the global array variable
       let obj = { ...data };
       tripsArray.push(obj);
-
       // Add new trip to local storage
       localStorage.setItem("trips", JSON.stringify(tripsArray));
 
       // Hide the save button when new trip is added to the list
       save.style.display = "none";
       tripList.prepend(entry);
+      tripList.scrollIntoView({ behavior: "smooth" });
       form.reset();
       closeModal();
     });
