@@ -1,8 +1,8 @@
 /**
- * @description Countdown to date of departure
+ * @description Function to calculate the length of dates between two dates
  * @param {String} currentDate
  * @param {String} departDate
- * @returns A value until date of departure from current date
+ * @returns A value
  */
 
 export const getDaysLeft = (currentDate, departDate) => {

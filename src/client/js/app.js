@@ -57,24 +57,19 @@ export const handleSubmit = async (e) => {
       newTrip.currentTemp = weatherData.data[0].temp;
       newTrip.description = weatherData.data[0].weather.description;
       newTrip.icon = weatherData.data[0].weather.icon;
+      newTrip.currentDate = reformatDate(weatherData.data[0].datetime);
     });
 
     await pixabayAPI(newTrip.city, newTrip.country).then((photo) => {
       newTrip.photo = photo.hits[0].webformatURL;
     });
 
+    // Additional trip data to add to the global object
     newTrip.departing = reformatDate(departDate);
     newTrip.returning = reformatDate(returnDate);
     newTrip.countdown = getDaysLeft(Date.now(), departDate);
+    newTrip.length = getDaysLeft(returnDate, departDate);
     newTrip.id = Date.now();
-
-    // Get the current date to display with current weather forecast
-    let today = new Date();
-    let dd = String(today.getDate()).padStart(2, "0");
-    let mm = String(today.getMonth() + 1).padStart(2, "0");
-    let yyyy = today.getFullYear();
-    today = `${dd}/${mm}/${yyyy}`;
-    newTrip.dateToday = today;
 
     // Pass API data through to the HTML template to add a new trip entry to the UI
     createNewTrip(modal, newTrip, "modal");

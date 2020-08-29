@@ -29,7 +29,8 @@ export const createNewTrip = (entry, data, ui) => {
             <h3 class="destination">My trip to: <span  class="highlight">${data.city}</span></h3>
             <h3 class="departing">Departing: <span class="highlight">${data.departing}</span></h3>
             <h3 class="returning">Returning: <span class="highlight">${data.returning}</span></h3>
-            <p class="countdown">${data.city} is <strong>${data.countdown}</strong> days away.</p>
+            <p class="countdown">${data.city}, ${data.country} is <strong>${data.countdown}</strong> days away</p>
+            <p>Length of trip: <strong>${data.length}</strong> days</p>
             <div class="btn-group">
                 <button class="btn save-trip" id="saveTrip_${data.id}">Save trip</button>
                 <button class="btn delete-trip" id="deleteTrip_${data.id}">Delete trip</button>
@@ -39,14 +40,16 @@ export const createNewTrip = (entry, data, ui) => {
             <div class="weather-forecast">
                 <div class="weather-current">
                     <p class="weather-date">Today's forecast:
-                        <br>${data.dateToday}
+                        <br>${data.currentDate}
                     </p>
                     <img class="weather-icon" src="https://www.weatherbit.io/static/img/icons/${data.icon}.png" alt="Weather Icon">
                     <p class="weather-description">${data.description}</p>
                     <p class="weather-temp">Low: ${data.currentMinTemp}&#8451; <span class="divider">|</span> High: ${data.currentMaxTemp}&#8451;</p>
                 </div>
                 <div class="weather-future">
-                    <p class="weather-date">Future forecast:<br>14/08/2020</p>
+                    <p class="weather-date">Future forecast:
+                        <br>${data.departing}
+                    </p>
                     <img class="weather-icon" src="https://www.weatherbit.io/static/img/icons/${data.icon}.png" alt="Weather Icon">
                     <p class="weather-description">Broken Clouds</p>
                     <p class="weather-temp">Low: 22&#8451; <span class="divider">|</span> High: 25&#8451;</p>
