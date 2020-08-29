@@ -36,6 +36,10 @@ export const handleSubmit = async (e) => {
   if (formValidation(from, to, departDate, returnDate)) {
     openModal();
 
+    // Check if departure date is less or greater than 16 days away. If more than 16 days away then use the latest weather forecast (i.e. ther 16th day)
+    let daysLeft = getDaysLeft(Date.now(), departDate);
+    let futureWeather = daysLeft < 15 ? daysLeft : 15;
+
     await geonamesAPI(to).then((geoData) => {
       newTrip.city = geoData.geonames[0].name;
       newTrip.country = geoData.geonames[0].countryName;
@@ -58,6 +62,17 @@ export const handleSubmit = async (e) => {
       newTrip.description = weatherData.data[0].weather.description;
       newTrip.icon = weatherData.data[0].weather.icon;
       newTrip.currentDate = reformatDate(weatherData.data[0].datetime);
+
+      newTrip.futureMinTemp = Math.floor(
+        weatherData.data[futureWeather].min_temp
+      );
+      newTrip.futureMaxTemp = Math.floor(
+        weatherData.data[futureWeather].max_temp
+      );
+      newTrip.futureTemp = weatherData.data[futureWeather].temp;
+      newTrip.futureDescription =
+        weatherData.data[futureWeather].weather.description;
+      newTrip.futureIcon = weatherData.data[futureWeather].weather.icon;
     });
 
     await pixabayAPI(newTrip.city, newTrip.country).then((photo) => {
@@ -67,7 +82,7 @@ export const handleSubmit = async (e) => {
     // Additional trip data to add to the global object
     newTrip.departing = reformatDate(departDate);
     newTrip.returning = reformatDate(returnDate);
-    newTrip.countdown = getDaysLeft(Date.now(), departDate);
+    newTrip.countdown = daysLeft;
     newTrip.length = getDaysLeft(returnDate, departDate);
     newTrip.id = Date.now();
 

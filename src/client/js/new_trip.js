@@ -50,9 +50,9 @@ export const createNewTrip = (entry, data, ui) => {
                     <p class="weather-date">Future forecast:
                         <br>${data.departing}
                     </p>
-                    <img class="weather-icon" src="https://www.weatherbit.io/static/img/icons/${data.icon}.png" alt="Weather Icon">
-                    <p class="weather-description">Broken Clouds</p>
-                    <p class="weather-temp">Low: 22&#8451; <span class="divider">|</span> High: 25&#8451;</p>
+                    <img class="weather-icon" src="https://www.weatherbit.io/static/img/icons/${data.futureIcon}.png" alt="Weather Icon">
+                    <p class="weather-description">${data.futureDescription}</p>
+                    <p class="weather-temp">Low: ${data.futureMinTemp}&#8451; <span class="divider">|</span> High: ${data.futureMaxTemp}&#8451;</p>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 /**
- * @description Function to calculate the length of dates between two dates
+ * @description Function to calculate the length of days between two dates
  * @param {String} currentDate
  * @param {String} departDate
  * @returns A value
