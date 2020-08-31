@@ -21,7 +21,7 @@ export const geonamesAPI = async (city = "") => {
 // Get more info on the country from Rest Countries API
 export const restCountriesAPI = async (country) => {
   const url = `https://restcountries.eu/rest/v2/name/${country}`;
-  const res = await fetch(url);
+  const res = await fetch(proxy + url);
   try {
     const data = res.json();
     return data;
