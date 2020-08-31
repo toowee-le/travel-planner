@@ -48,6 +48,7 @@ export const handleSubmit = async (e) => {
     });
 
     await restCountriesAPI(newTrip.country).then((countryInfo) => {
+      newTrip.capital = countryInfo[0].capital;
       newTrip.region = countryInfo[0].region;
       newTrip.subRegion = countryInfo[0].subregion;
       newTrip.languages = countryInfo[0].languages[0].name;
