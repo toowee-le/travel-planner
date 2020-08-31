@@ -70,14 +70,12 @@ form {
   z-index: -1;
   top: 0;
   left: 0;
-  filter: grayscale(50%) saturate(100%) brightness(70%)
-    drop-shadow(16px 16px 20px blue);
   opacity: 0.9;
 }
 
 /* Media Queries */
 @media (max-width: 1100px) {
-  .travel-form__section {
+  .travel-form-section {
     flex-direction: column;
   }
 }
