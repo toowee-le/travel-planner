@@ -121,7 +121,7 @@ export const handleResult = async (entry, data, ui, id) => {
       // Save new trip to Express server
       postData("/addEntry", newTrip);
 
-      // Hide the save button when new trip is added to the list
+      // Update UI
       save.style.display = "none";
       tripList.prepend(entry);
       tripList.scrollIntoView({ behavior: "smooth" });
@@ -145,6 +145,11 @@ export const handleResult = async (entry, data, ui, id) => {
   }
 };
 
+/**
+ * @description - Delete trip entry
+ * @param {*} entry - Element to be deleted
+ * @param {*} id - Trip id
+ */
 const deleteEntry = (entry, id) => {
   let removeTrip = tripsArray.find((trip) => trip.id === id);
   tripsArray.splice(tripsArray.indexOf(removeTrip), 1);
@@ -176,6 +181,8 @@ const loadTrips = () => {
   for (let trip of tripData) {
     createNewTrip(tripList, trip, "list");
   }
+
+  const nav = (document.getElementById("nav").style.display = "block");
 };
 
 window.onload = () => loadTrips();
