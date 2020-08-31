@@ -57,10 +57,10 @@ export const pixabayAPI = async (city, country) => {
 };
 
 /**
- * @description - POST request to the server
+ * @description - POST API data to the server
  */
 
-export const postRequest = async (url = "", data = {}) => {
+export const postData = async (url = "", data = {}) => {
   const res = await fetch(url, {
     method: "POST",
     credentials: "same-origin",

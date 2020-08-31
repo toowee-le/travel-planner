@@ -3,6 +3,7 @@ import {
   weatherbitAPI,
   pixabayAPI,
   restCountriesAPI,
+  postData,
 } from "./api";
 import { createNewTrip } from "./new_trip";
 import { getDaysLeft, reformatDate, formValidation } from "./helpers";
@@ -11,6 +12,7 @@ import { getDaysLeft, reformatDate, formValidation } from "./helpers";
  * Global variables
  */
 
+let newTrip = {};
 let tripList = document.querySelector(".trip");
 let modal = document.querySelector(".modal");
 
@@ -31,7 +33,6 @@ export const handleSubmit = async (e) => {
   const to = document.forms["travel-form"]["to"].value;
   const departDate = document.getElementById("departDate").value;
   const returnDate = document.getElementById("returnDate").value;
-  let newTrip = {};
 
   if (formValidation(from, to, departDate, returnDate)) {
     openModal();
@@ -85,7 +86,6 @@ export const handleSubmit = async (e) => {
     newTrip.returning = reformatDate(returnDate);
     newTrip.countdown = daysLeft;
     newTrip.length = getDaysLeft(returnDate, departDate);
-    console.log(returnDate, departDate);
     newTrip.id = Date.now();
 
     // Pass API data through to the HTML template to add a new trip entry to the UI
@@ -118,6 +118,8 @@ export const handleResult = async (entry, data, ui, id) => {
       tripsArray.push(obj);
       // Add new trip to local storage
       localStorage.setItem("trips", JSON.stringify(tripsArray));
+      // Save new trip to Express server
+      postData("/addEntry", newTrip);
 
       // Hide the save button when new trip is added to the list
       save.style.display = "none";
@@ -147,6 +149,7 @@ const deleteEntry = (entry, id) => {
   let removeTrip = tripsArray.find((trip) => trip.id === id);
   tripsArray.splice(tripsArray.indexOf(removeTrip), 1);
   entry.remove(removeTrip);
+  postData("/delete", { id });
   localStorage.setItem("trips", JSON.stringify([]));
   localStorage.setItem("trips", JSON.stringify(tripsArray));
 };
