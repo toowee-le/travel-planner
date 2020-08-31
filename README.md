@@ -1,10 +1,10 @@
-# Travel Planner App
+# Travel Planner App :airplane:
 
 ## Description
 
 [Udacity Front End Developer Nanodegree](https://www.udacity.com/course/front-end-web-developer-nanodegree--nd0011) - Capstone Project</br>
 
-This ia a web application for travel planning. The user can add a future trip by searching for the city, which will bring up information about the country being visited and the weather forecast.</br>
+This is a web application for travel planning. The user can add a future trip by searching the city, which will bring up information about the country being visited and the current/future weather forecast.</br>
 
 Technologies used: HTML, CSS, Sass, JavaScript, Node.js, Express, Webpack, Babel, Service Workers, Jest
 
