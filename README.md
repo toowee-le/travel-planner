@@ -8,6 +8,10 @@ This is a web application for travel planning. The user can add a future trip by
 
 Technologies used: HTML, CSS, Sass, JavaScript, Node.js, Express, Webpack, Babel, Service Workers, Jest
 
+### Demo
+
+![Travel Planner App](demo.gif)
+
 ### Features
 
 - Express server set up
@@ -19,10 +23,6 @@ Technologies used: HTML, CSS, Sass, JavaScript, Node.js, Express, Webpack, Babel
 - Users can add an end date with the length of trip displayed
 - Requests made to [REST Countries API](https://restcountries.eu/) to pull in data about the country being visited (Country, Capital, Region, Sub-region, Languages, Currency, Timezone)
 - Current and future weather forecast pulled from [Weatherbit](https://www.weatherbit.io/api)
-
-## Demo
-
-![Travel Planner App](demo.gif)
 
 ## Install the app locally
 
