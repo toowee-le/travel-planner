@@ -85,6 +85,7 @@ export const handleSubmit = async (e) => {
     newTrip.returning = reformatDate(returnDate);
     newTrip.countdown = daysLeft;
     newTrip.length = getDaysLeft(returnDate, departDate);
+    console.log(returnDate, departDate);
     newTrip.id = Date.now();
 
     // Pass API data through to the HTML template to add a new trip entry to the UI
