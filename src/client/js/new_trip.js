@@ -4,7 +4,7 @@ import { handleResult } from "./app";
  * @description - HTML template for adding a new trip
  * @param {Node} entry - New element for new trip
  * @param {object} data - Data fetched from API for new trip
- * @param {string} ui - Determines where the new trip entry is on the UI (modal or saved trip list)
+ * @param {string} ui - Declare where the new trip entry is added on the UI (modal or trip list)
  */
 
 export const createNewTrip = (entry, data, ui) => {
@@ -60,7 +60,7 @@ export const createNewTrip = (entry, data, ui) => {
 
   element.innerHTML = innerHTML;
 
-  entry.append(element);
+  ui === "modal" ? entry.append(element) : entry.prepend(element);
 
   handleResult(element, data, ui, data.id);
 };
