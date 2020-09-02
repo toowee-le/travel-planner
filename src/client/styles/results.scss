@@ -30,7 +30,7 @@
 
   .trip-info > p {
     margin-bottom: 5px;
-    font-size: 1rem;
+    font-size: 1.3rem;
 
     .data {
       font-weight: 700;
@@ -52,6 +52,7 @@
 
     .countdown {
       margin: 1em 0 0;
+      font-size: 1.3rem;
     }
 
     hr {
@@ -84,7 +85,7 @@
       display: flex;
       justify-content: space-between;
       text-align: center;
-      font-size: 1rem;
+      font-size: 1.2rem;
 
       .weather-date {
         margin-bottom: 0;
@@ -93,6 +94,7 @@
       .weather-description {
         text-transform: uppercase;
         font-weight: 300;
+        font-size: 1rem;
       }
 
       .divider {
