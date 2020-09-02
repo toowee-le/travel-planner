@@ -36,3 +36,8 @@ const port = process.env.PORT || 8000;
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}!`);
 });
+
+// For testing
+const add = (a, b) => a + b;
+
+module.exports = add;
