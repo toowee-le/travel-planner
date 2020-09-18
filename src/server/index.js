@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 const cors = require("cors");
+const path = require("path");
 require("dotenv").config();
 
 // Dependencies
@@ -13,7 +14,7 @@ app.use(cors());
 app.use(express.static("dist"));
 
 app.get("/", function (req, res) {
-  res.sendFile("dist/index.html");
+  res.sendFile("index.html", { root: path.join(__dirname, "../dist") });
 });
 
 // Create empty object to save API data
