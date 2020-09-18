@@ -36,8 +36,9 @@ export const handleSubmit = async (e) => {
 
   if (formValidation(from, to, departDate, returnDate)) {
     openModal();
+    console.log(departDate);
 
-    // Check if departure date is less or greater than 16 days away. If more than 16 days away then use the latest weather forecast (i.e. ther 16th day)
+    // Check if departure date is less or greater than 16 days away. If more than 16 days away then use the latest weather forecast from API (i.e. the 16th day)
     let daysLeft = getDaysLeft(Date.now(), departDate);
     let futureWeather = daysLeft < 15 ? daysLeft : 15;
 
@@ -98,10 +99,10 @@ export const handleSubmit = async (e) => {
 };
 
 /**
- * @description - Handle the new trip entry
- * @param {Node} entry - Element for trip entry
- * @param {object} data - New trip data
- * @param {string} ui - Determine where the trip entry will be added on the UI (modal/list)
+ * @description - Handle new trip entry
+ * @param {Node} entry - New trip entry element
+ * @param {object} data
+ * @param {string} ui - Determine where trip entry will be added on the UI (modal or list)
  * @param {string} id - Unique ID assigned to new element
  */
 
