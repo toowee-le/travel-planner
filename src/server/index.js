@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.static("dist"));
 
 app.get("/", function (req, res) {
-  res.sendFile("dist/index.html");
+  res.sendFile(path.resolve("dist/index.html"));
 });
 
 // Create empty object to save API data
