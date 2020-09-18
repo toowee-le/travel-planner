@@ -11,6 +11,8 @@ export const createNewTrip = (entry, data, ui) => {
   let element = document.createElement("div");
   element.classList.add("trip-content");
 
+  let dayAmount = `${data.countdown > 1 ? "days" : "day"}`;
+
   let innerHTML = `
         <div class="trip-selected">
             <h2 class="trip-city">${data.city}, ${data.country}</h2>
@@ -30,7 +32,7 @@ export const createNewTrip = (entry, data, ui) => {
             <h3 class="destination">My trip to: <span  class="highlight">${data.city}</span></h3>
             <h3 class="departing">Departing: <span class="highlight">${data.departing}</span></h3>
             <h3 class="returning">Returning: <span class="highlight">${data.returning}</span></h3>
-            <p class="countdown">${data.city}, ${data.country} is <strong>${data.countdown}</strong> days away.</p>
+            <p class="countdown">${data.city}, ${data.country} is <strong>${data.countdown}</strong> ${dayAmount} away.</p>
             <p>Length of trip: <strong>${data.length}</strong> days.</p>
             <div class="btn-group">
                 <button class="btn save-trip" id="saveTrip_${data.id}">Save trip</button>
