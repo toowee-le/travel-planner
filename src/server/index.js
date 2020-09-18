@@ -5,19 +5,19 @@ const cors = require("cors");
 require("dotenv").config();
 
 // Dependencies
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
 
 // Init main project folder
 app.use(express.static("dist"));
 
+app.get("/", function (req, res) {
+  res.sendFile("dist/index.html");
+});
+
 // Create empty object to save API data
 let projectData = [];
-
-app.get("/", function (req, res) {
-  res.sendFile("dist/index.html", { root: __dirname });
-});
 
 // Add new trip entry to the server
 app.post("/addEntry", (req, res) => {
